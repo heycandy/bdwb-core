@@ -1,0 +1,189 @@
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.chinasofti.ark</groupId>
+  <artifactId>bdwb-core</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <inceptionYear>2008</inceptionYear>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+    <scala.binary.version>2.10</scala.binary.version>
+    <scala.version>2.10.6</scala.version>
+    <reflections.version>0.9.11</reflections.version>
+    <slf4j.version>1.7.25</slf4j.version>
+    <log4j.version>2.8.2</log4j.version>
+    <dom4j.version>1.6.1</dom4j.version>
+    <streamsupport.version>1.5.5</streamsupport.version>
+    <log4j-slf4j.version>2.7</log4j-slf4j.version>
+  </properties>
+
+  <packaging>jar</packaging>
+  <name>BDWB Core Project</name>
+  <url>http://10.100.66.119/plugins/git/bdwb/bdwb-core</url>
+  <licenses>
+    <license>
+      <name>Apache 2.0 License</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  <scm>
+    <connection>ssh://gitolite@10.100.66.119/bdwb/BDWD.git</connection>
+    <developerConnection>https://10.100.66.119/plugins/git/bdwb/BDWD.git</developerConnection>
+    <url>ssh://gitolite@10.100.66.119/bdwb/BDWD.git</url>
+    <tag>HEAD</tag>
+  </scm>
+  <developers>
+    <developer>
+      <id>white</id>
+      <name>Bai Yu</name>
+      <email>baiyu@chinasofti.com</email>
+      <url>http://10.100.66.119/my/</url>
+      <organization>ICS_CS</organization>
+      <organizationUrl>http://www.chinasofti.com</organizationUrl>
+    </developer>
+  </developers>
+  <issueManagement>
+    <system>Tuleap</system>
+    <url>http://10.100.66.119/plugins/tracker/?tracker=16</url>
+  </issueManagement>
+
+  <repositories>
+    <repository>
+      <id>scala-tools.org</id>
+      <name>Scala-Tools Maven2 Repository</name>
+      <url>http://scala-tools.org/repo-releases</url>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>scala-tools.org</id>
+      <name>Scala-Tools Maven2 Repository</name>
+      <url>http://scala-tools.org/repo-releases</url>
+    </pluginRepository>
+  </pluginRepositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.reflections</groupId>
+      <artifactId>reflections</artifactId>
+      <version>${reflections.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>dom4j</groupId>
+      <artifactId>dom4j</artifactId>
+      <version>${dom4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>net.sourceforge.streamsupport</groupId>
+      <artifactId>streamsupport</artifactId>
+      <version>${streamsupport.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-api</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-core</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.logging.log4j</groupId>
+      <artifactId>log4j-slf4j-impl</artifactId>
+      <version>${log4j-slf4j.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>${scala.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.4</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.specs</groupId>
+      <artifactId>specs</artifactId>
+      <version>1.2.5</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <testSourceDirectory>src/test/scala</testSourceDirectory>
+    <plugins>
+      <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.6.1</version>
+        <executions>
+          <execution>
+            <phase>compile</phase>
+            <goals>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>net.alchim31.maven</groupId>
+        <artifactId>scala-maven-plugin</artifactId>
+        <version>3.2.2</version>
+        <executions>
+          <execution>
+            <id>compile-scala</id>
+            <goals>
+              <goal>add-source</goal>
+              <goal>compile</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>test-compile-scala</id>
+            <goals>
+              <goal>add-source</goal>
+              <goal>testCompile</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <compileOrder>JavaThenScala</compileOrder>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.scala-tools</groupId>
+        <artifactId>maven-scala-plugin</artifactId>
+        <configuration>
+          <scalaVersion>${scala.version}</scalaVersion>
+        </configuration>
+      </plugin>
+    </plugins>
+  </reporting>
+</project>
